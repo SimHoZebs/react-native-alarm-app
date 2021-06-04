@@ -1,0 +1,12 @@
+{
+  "name": "alarm-app",
+  "displayName": "alarm-app",
+  "expo": {
+    "name": "alarm-app",
+    "slug": "alarm-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
