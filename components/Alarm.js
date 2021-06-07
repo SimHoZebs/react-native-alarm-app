@@ -19,7 +19,7 @@ function Alarm(props) {
       <View style={styles.alarmTop}>
         <View>
           <BaseText>{title}</BaseText>
-          <BaseText>{`${hr}:${min} ${meridiem}`}</BaseText>
+          <BaseText style={styles.time}>{`${hr}:${min} ${meridiem}`}</BaseText>
         </View>
 
         <Switch
@@ -56,6 +56,10 @@ const styles = StyleSheet.create({
   alarmTop: {
     justifyContent: "space-between",
     flexDirection: "row",
+  },
+
+  time: {
+    fontSize: 30
   },
 
   switch: {
