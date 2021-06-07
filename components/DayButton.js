@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { StyleSheet, View, Text, Button, Pressable } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, Pressable } from 'react-native'
 
 import BaseText from '../defaults/BaseText'
 import CustomTheme from '../defaults/CustomTheme'
@@ -20,10 +20,16 @@ function DayButton(props) {
 
   return (
     <Pressable
-      style={[styles.dayButtonWrapper, { backgroundColor: bgColor, }]}
+      style={[
+        styles.dayButtonWrapper, { backgroundColor: bgColor, }
+      ]}
       onPress={() => setIsOn(prev => !prev)}
     >
-      <BaseText style={[styles.dayButtonText, { color: textColor }]} >
+      <BaseText
+        style={[
+          styles.dayButtonText, { color: textColor }
+        ]}
+      >
         {props.day[0]}
       </BaseText>
     </Pressable>

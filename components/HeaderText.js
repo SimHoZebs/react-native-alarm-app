@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet } from 'react-native'
 import BaseText from '../defaults/BaseText'
 
 function HeaderText(props) {
@@ -7,7 +7,6 @@ function HeaderText(props) {
     <BaseText
       style={[styles.headerText, props.style,]}
       fontFamily="RedHatDisplay_500Medium"
-    // fontFamily="RedHatDisplay_500Medium"
     >
       {props.children}
     </BaseText>

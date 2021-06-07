@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
-
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar'
 import { StyleSheet, Platform, StatusBar, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper'
 
+//defaults
 import CustomTheme from './defaults/CustomTheme'
 
+//components
 import HeaderText from './components/HeaderText'
 import Alarm from './components/Alarm';
 
+//data
 import alarmData from './app-data'
 
 export default function App() {
@@ -18,11 +20,11 @@ export default function App() {
     setData(alarmData)
   }, [])
 
-  const test = 5;
-  console.log(test.toString.length);
 
   return (
     <PaperProvider theme={CustomTheme}>
+      <ExpoStatusBar style="auto" />
+
       <View style={styles.container}>
         <View style={styles.header}>
           <HeaderText style={styles.headerTopText}>Next Alarm In</HeaderText>
@@ -39,8 +41,6 @@ export default function App() {
             />
           ))}
         </View>
-
-        <ExpoStatusBar style="auto" />
       </View>
     </PaperProvider>
   );
@@ -49,7 +49,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "purple",
     backgroundColor: CustomTheme.colors.background,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
   },

@@ -27,10 +27,12 @@ function Alarm(props) {
           value={isEnabled}
           onValueChange={handleSwitch}
           color={CustomTheme.colors.primary}
-          trackColor={{ false: "grey", true: CustomTheme.colors.primary }}
+          trackColor={{
+            false: "grey",
+            true: CustomTheme.colors.primary
+          }}
           thumbColor="white"
         />
-
       </View >
 
       <View style={styles.dayButtonsWrapper}>
@@ -63,7 +65,6 @@ const styles = StyleSheet.create({
   },
 
   switch: {
-    // width: "10%"
     borderWidth: 1,
     borderColor: "white"
   },
