@@ -21,17 +21,24 @@ function BaseText(props) {
     RedHatDisplay_500Medium
   })
 
-  return (
-    <Text
-      style={
-        [styles.baseText, props.style, { fontFamily: props.fontFamily || "RedHatDisplay_400Regular" }]}
-    >
+  if (!fontsLoaded) {
+    return (
+      null
+    )
+  }
+  else {
 
-      {props.children}
-    </ Text>
-  )
+    return (
+      <Text
+        style={
+          [styles.baseText, props.style, { fontFamily: props.fontFamily || "RedHatDisplay_400Regular" }]}
+      >
+
+        {props.children}
+      </ Text>
+    )
+  }
 }
-// }
 
 const styles = StyleSheet.create({
   baseText: {
