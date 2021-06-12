@@ -36,4 +36,5 @@ const styles = StyleSheet.create({
     fontFamily: "RedHatDisplay_400Regular"
   }
 })
+
 export default BaseText

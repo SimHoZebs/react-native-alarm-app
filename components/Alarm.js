@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Switch, View } from 'react-native'
+import { Pressable, StyleSheet, Switch, TouchableOpacity, View } from 'react-native'
 import CustomTheme from '../defaults/CustomTheme';
 
 import BaseText from '../defaults/BaseText'
@@ -15,35 +15,38 @@ function Alarm(props) {
   }
 
   return (
-    <View style={styles.alarm}>
-      <View style={styles.alarmTop}>
-        <View>
-          <BaseText>{title}</BaseText>
-          <BaseText style={styles.time}>{`${hr}:${min} ${meridiem}`}</BaseText>
-        </View>
+    <View style={styles.alarm}
+    >
+      <Pressable onPress={() => props.navigation.navigate("AlarmScreen")} >
+        <View style={styles.alarmTop}>
+          <View>
+            <BaseText>{title}</BaseText>
+            <BaseText style={styles.time}>{`${hr}:${min} ${meridiem}`}</BaseText>
+          </View>
 
-        <Switch
-          style={styles.switch}
-          value={isEnabled}
-          onValueChange={handleSwitch}
-          color={CustomTheme.colors.primary}
-          trackColor={{
-            false: "grey",
-            true: CustomTheme.colors.primary
-          }}
-          thumbColor="white"
-        />
-      </View >
-
-      <View style={styles.dayButtonsWrapper}>
-        {days.map((day, index) => (
-          <DayButton
-            key={index}
-            day={day}
-            isOn={false}
+          <Switch
+            style={styles.switch}
+            value={isEnabled}
+            onValueChange={handleSwitch}
+            color={CustomTheme.colors.primary}
+            trackColor={{
+              false: "grey",
+              true: CustomTheme.colors.primary
+            }}
+            thumbColor="white"
           />
-        ))}
-      </View>
+        </View >
+
+        <View style={styles.dayButtonsWrapper}>
+          {days.map((day, index) => (
+            <DayButton
+              key={index}
+              day={day}
+              isOn={false}
+            />
+          ))}
+        </View>
+      </Pressable>
     </View>
   )
 }
