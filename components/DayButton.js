@@ -7,23 +7,23 @@ import CustomTheme from '../defaults/CustomTheme'
 function DayButton(props) {
   const [textColor, setTextColor] = useState("black")
   const [bgColor, setBgColor] = useState(CustomTheme.colors.primary)
-  const [isOn, setIsOn] = useState(props.isOn)
+  const [isActiveDay, setIsActiveDay] = useState(props.isAcitveDay)
 
   useEffect(() => {
-    setTextColor(isOn ? "black" : "white")
-    setBgColor(isOn ? CustomTheme.colors.primary : "black")
+    setTextColor(isActiveDay ? "black" : "white")
+    setBgColor(isActiveDay ? CustomTheme.colors.primary : "black")
 
     if (props.day === "Sunday") {
       setTextColor("red")
     }
-  }, [isOn])
+  }, [isActiveDay])
 
   return (
     <Pressable
       style={[
         styles.dayButtonWrapper, { backgroundColor: bgColor, }
       ]}
-      onPress={() => setIsOn(prev => !prev)}
+      onPress={() => setIsActiveDay(prev => !prev)}
     >
       <BaseText
         style={[

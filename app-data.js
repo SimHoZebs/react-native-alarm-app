@@ -1,11 +1,11 @@
 class Schema {
-  constructor(title, hr, min, meridiem, isOn, activeDay) {
+  constructor(title, hr, min, meridiem, isOn, activeDays) {
     this.title = title;
     this.hr = hr.toString().length < 2 ? `0${hr}` : `${hr}`
     this.min = min.toString().length < 2 ? `0${min}` : `${min}`
     this.meridiem = meridiem.toUpperCase()
     this.isOn = isOn
-    this.activeDay = activeDay
+    this.activeDays = activeDays
   }
 }
 

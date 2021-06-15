@@ -15,6 +15,7 @@ function HeaderText(props) {
 
 const styles = StyleSheet.create({
   headerText: {
+    fontSize: 24,
     alignSelf: "center",
     fontFamily: "RedHatDisplay_500Medium"
   }

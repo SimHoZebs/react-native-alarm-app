@@ -21,7 +21,7 @@ function Main(props) {
 	return (
 		<BaseView>
 			<View style={styles.header}>
-				<HeaderText style={styles.headerTopText}>Next Alarm In</HeaderText>
+				<HeaderText>Next Alarm In</HeaderText>
 				<HeaderText style={styles.headerRemainingTime}>24 hours 59 minutes</HeaderText>
 			</View>
 
@@ -43,10 +43,6 @@ function Main(props) {
 const styles = StyleSheet.create({
 	header: {
 		marginTop: 100,
-	},
-
-	headerTopText: {
-		fontSize: 24
 	},
 
 	headerRemainingTime: {

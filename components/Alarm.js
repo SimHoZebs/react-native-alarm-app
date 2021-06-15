@@ -4,20 +4,23 @@ import CustomTheme from '../defaults/CustomTheme';
 
 import BaseText from '../defaults/BaseText'
 import DayButton from './DayButton'
+import WeekButtons from './WeekButtons';
 
 function Alarm(props) {
-  const { title, hr, min, meridiem, isOn } = props.alarmData
-  const [isEnabled, setIsEnabled] = useState(isOn);
-  const days = ["Sunday", "M", "T", "W", "T", "F", "S"]
+  const { title, hr, min, meridiem, isOn, activeDays } = props.alarmData
+  const [alarmIsOn, setAlarmIsOn] = useState(isOn);
 
-  function handleSwitch() {
-    setIsEnabled(prev => !prev)
+  function handleOnPress() {
+    props.navigation.navigate("AlarmScreen", {
+      alarmData: props.alarmData,
+      activeDays: activeDays
+    })
   }
 
   return (
     <View style={styles.alarm}
     >
-      <Pressable onPress={() => props.navigation.navigate("AlarmScreen")} >
+      <Pressable onPress={handleOnPress} >
         <View style={styles.alarmTop}>
           <View>
             <BaseText>{title}</BaseText>
@@ -26,8 +29,8 @@ function Alarm(props) {
 
           <Switch
             style={styles.switch}
-            value={isEnabled}
-            onValueChange={handleSwitch}
+            value={alarmIsOn}
+            onValueChange={() => setAlarmIsOn(prev => !prev)}
             color={CustomTheme.colors.primary}
             trackColor={{
               false: "grey",
@@ -37,17 +40,11 @@ function Alarm(props) {
           />
         </View >
 
-        <View style={styles.dayButtonsWrapper}>
-          {days.map((day, index) => (
-            <DayButton
-              key={index}
-              day={day}
-              isOn={false}
-            />
-          ))}
-        </View>
+        <WeekButtons
+          activeDays={activeDays}
+        />
       </Pressable>
-    </View>
+    </View >
   )
 }
 
@@ -72,11 +69,6 @@ const styles = StyleSheet.create({
     borderColor: "white"
   },
 
-  dayButtonsWrapper: {
-    marginTop: 10,
-    flexDirection: "row",
-    justifyContent: "space-evenly"
-  }
 })
 
 export default Alarm
