@@ -12,11 +12,24 @@ import CustomTheme from './defaults/CustomTheme'
 import Main from './navigation/Main'
 import AlarmScreen from './navigation/AlarmScreen'
 
+//fonts
+import {
+  useFonts,
+  RedHatDisplay_400Regular as fontRegular,
+  RedHatDisplay_500Medium as fontMedium,
+  RedHatDisplay_700Bold as fontBold,
+  RedHatDisplay_900Black as fontBlack,
+} from '@expo-google-fonts/red-hat-display';
+
 const Stack = createStackNavigator();
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    fontRegular,
+    fontMedium
+  })
 
-  return (
+  return (!fontsLoaded ? null :
     <NavigationContainer>
       <PaperProvider theme={CustomTheme}>
         <ExpoStatusBar style="auto" />
