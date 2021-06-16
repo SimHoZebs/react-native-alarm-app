@@ -4,6 +4,7 @@ import { Provider as PaperProvider } from 'react-native-paper'
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { createNativeStackNavigator } from 'react-native-screens/native-stack'
 
 //defaults
 import CustomTheme from './defaults/CustomTheme'
@@ -12,7 +13,6 @@ import CustomTheme from './defaults/CustomTheme'
 import Main from './navigation/Main'
 import AlarmScreen from './navigation/AlarmScreen'
 
-//fonts
 import {
   useFonts,
   RedHatDisplay_400Regular as fontRegular,
@@ -21,7 +21,7 @@ import {
   RedHatDisplay_900Black as fontBlack,
 } from '@expo-google-fonts/red-hat-display';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -33,7 +33,10 @@ export default function App() {
     <NavigationContainer>
       <PaperProvider theme={CustomTheme}>
         <ExpoStatusBar style="auto" />
-        <Stack.Navigator initialRouteName="Main" >
+        <Stack.Navigator
+          initialRouteName="Main"
+          screenOptions={{ stackAnimation: "none" }}
+        >
           <Stack.Screen name="Main" component={Main} />
           <Stack.Screen name="AlarmScreen" component={AlarmScreen} />
         </Stack.Navigator>
