@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 //defaults
 import BaseText from '../defaults/BaseText'
@@ -8,7 +8,7 @@ function ButtonText(props) {
 	return (
 		<BaseText
 			style={styles.buttonText}
-			fontFamily="RedHatDisplay_500Medium"
+			fontFamily="fontMedium"
 		>
 			{props.children}
 		</BaseText>

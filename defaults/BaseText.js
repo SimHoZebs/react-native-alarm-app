@@ -4,16 +4,16 @@ import CustomTheme from './CustomTheme'
 
 import {
   useFonts,
-  RedHatDisplay_400Regular,
-  RedHatDisplay_500Medium,
-  RedHatDisplay_700Bold,
-  RedHatDisplay_900Black,
+  RedHatDisplay_400Regular as fontRegular,
+  RedHatDisplay_500Medium as fontMedium,
+  RedHatDisplay_700Bold as fontBold,
+  RedHatDisplay_900Black as fontBlack,
 } from '@expo-google-fonts/red-hat-display';
 
 function BaseText(props) {
   let [fontsLoaded] = useFonts({
-    RedHatDisplay_400Regular,
-    RedHatDisplay_500Medium
+    fontRegular,
+    fontMedium
   })
 
   return (!fontsLoaded ? null :
@@ -21,7 +21,7 @@ function BaseText(props) {
       style={[
         styles.baseText,
         props.style,
-        { fontFamily: props.fontFamily || "RedHatDisplay_400Regular" }
+        { fontFamily: props.fontFamily || "fontRegular" }
       ]}
     >
       {props.children}
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   baseText: {
     color: CustomTheme.colors.text,
     fontSize: 16,
-    fontFamily: "RedHatDisplay_400Regular"
+    fontFamily: "fontRegular"
   }
 })
 

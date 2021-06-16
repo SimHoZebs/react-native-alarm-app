@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { StyleSheet, View, Pressable } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, View, Pressable, Keyboard } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker'
 
 //defaults
@@ -10,9 +10,11 @@ import BaseText from '../defaults/BaseText'
 import WeekButtons from '../components/WeekButtons'
 import ButtonText from '../components/ButtonText'
 import HeaderText from '../components/HeaderText'
+import { TextInput } from 'react-native-paper'
 
 function AlarmScreen(props) {
 	const { alarmData, activeDays } = props.route.params
+	const [title, setTitle] = useState(alarmData.title)
 	const [date, setDate] = useState(new Date())
 	const [showTimePicker, setShowTimePicker] = useState(false)
 
@@ -22,6 +24,12 @@ function AlarmScreen(props) {
 			prev.setMinutes(alarmData.min)
 			return prev
 		})
+
+		Keyboard.addListener("keyboardDidHide", handleKeyBoardDidHide)
+
+		return () => {
+			Keyboard.removeAllListeners("keyboardDidHide")
+		}
 	}, [])
 
 	function handleDateTimeViewOnChange(event, selectedTime) {
@@ -29,6 +37,10 @@ function AlarmScreen(props) {
 		if (selectedTime === undefined) { return }
 		console.log(selectedTime.toString().split(" ")[4])
 		setDate(prev => selectedTime)
+	}
+
+	function handleKeyBoardDidHide() {
+		Keyboard.dismiss()
 	}
 
 	return (
@@ -53,22 +65,34 @@ function AlarmScreen(props) {
 				/>
 			}
 
-			<WeekButtons
-				activeDays={activeDays}
-			/>
+			<View>
+				<TextInput
+					mode="outlined"
+					label="Alarm Title"
+					placeholder="Alarm Title"
+					value={title}
+					onChangeText={text => setTitle(text)}
+					theme={{ colors: { background: "hsl(0,0%,10%)" } }}
+					style={[styles.textInput]}
+				/>
 
-			<Pressable>
-				<ButtonText>Set specific dates</ButtonText>
-			</Pressable>
+				<WeekButtons
+					activeDays={activeDays}
+				/>
 
-			<View style={styles.bottomButtonsWrapper}>
-				<Pressable style={styles.bottomButton}>
-					<ButtonText>Cancel</ButtonText>
+				<Pressable>
+					<ButtonText>Set specific dates</ButtonText>
 				</Pressable>
 
-				<Pressable style={styles.bottomButton}>
-					<ButtonText>Save</ButtonText>
-				</Pressable>
+				<View style={styles.bottomButtonsWrapper}>
+					<Pressable style={styles.bottomButton}>
+						<ButtonText>Cancel</ButtonText>
+					</Pressable>
+
+					<Pressable style={styles.bottomButton}>
+						<ButtonText>Save</ButtonText>
+					</Pressable>
+				</View>
 			</View>
 		</BaseView>
 	)
@@ -90,6 +114,12 @@ const styles = StyleSheet.create({
 
 	time: {
 		fontSize: 64,
+	},
+
+	textInput: {
+		fontSize: 24,
+		fontWeight: "400",
+		marginHorizontal: 20,
 	},
 
 	bottomButtonsWrapper: {
