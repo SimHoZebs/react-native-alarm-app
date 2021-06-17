@@ -35,7 +35,10 @@ export default function App() {
         <ExpoStatusBar style="auto" />
         <Stack.Navigator
           initialRouteName="Main"
-          screenOptions={{ stackAnimation: "none" }}
+          screenOptions={{
+            stackAnimation: "none",
+            headerShown: false
+          }}
         >
           <Stack.Screen name="Main" component={Main} />
           <Stack.Screen name="AlarmScreen" component={AlarmScreen} />
