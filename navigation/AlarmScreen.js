@@ -45,12 +45,13 @@ function AlarmScreen(props) {
 
 	return (
 		<BaseView>
-			<HeaderText style={{ paddingTop: 100 }}>This alarm rings in</HeaderText>
+			<HeaderText style={styles.headerText}>This alarm rings in</HeaderText>
 			<HeaderText>Yes</HeaderText>
 
 			<Pressable
-				style={styles.alarmTime}
-				onPress={() => setShowTimePicker(true)}>
+				style={styles.timeWrapper}
+				onPress={() => setShowTimePicker(true)}
+			>
 				<BaseText style={styles.time}>
 					{`${date.getHours() > 12 ? date.getHours() - 12 : date.getHours()} : ${date.getMinutes()} ${date.getHours() > 12 ? "PM" : "AM"}`}
 				</BaseText>
@@ -65,10 +66,11 @@ function AlarmScreen(props) {
 				/>
 			}
 
-			<View>
+			<View style={styles.optionsWrapper}>
+				<BaseText style={styles.alarmTitle}>Alarm Title</BaseText>
+
 				<TextInput
 					mode="outlined"
-					label="Alarm Title"
 					placeholder="Alarm Title"
 					value={title}
 					onChangeText={text => setTitle(text)}
@@ -99,14 +101,17 @@ function AlarmScreen(props) {
 }
 
 const styles = StyleSheet.create({
+	headerText: {
+		marginTop: 50
+	},
+
 	title: {
 		fontSize: 48,
 		textAlign: "center",
 	},
 
-	alarmTime: {
+	timeWrapper: {
 		marginVertical: 40,
-		marginHorizontal: 20,
 		flexDirection: "row",
 		justifyContent: "space-evenly",
 		height: 85,
@@ -116,16 +121,23 @@ const styles = StyleSheet.create({
 		fontSize: 64,
 	},
 
+	optionsWrapper: {
+		marginHorizontal: 20
+	},
+
+	alarmTitle: {
+		fontSize: 16
+	},
+
 	textInput: {
+		height: 44,
 		fontSize: 24,
 		fontWeight: "400",
-		marginHorizontal: 20,
 	},
 
 	bottomButtonsWrapper: {
 		flexDirection: "row",
 		justifyContent: "space-between",
-		marginHorizontal: 20,
 	},
 
 	bottomButton: {

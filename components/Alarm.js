@@ -3,7 +3,6 @@ import { Pressable, StyleSheet, Switch, TouchableOpacity, View } from 'react-nat
 import CustomTheme from '../defaults/CustomTheme';
 
 import BaseText from '../defaults/BaseText'
-import DayButton from './DayButton'
 import WeekButtons from './WeekButtons';
 
 function Alarm(props) {
