@@ -5,7 +5,7 @@ import CustomTheme from './CustomTheme'
 
 function BaseView(props) {
 	return (
-		<View style={styles.baseView}>
+		<View style={[styles.baseView, props.style]}>
 			{props.children}
 		</View>
 	)

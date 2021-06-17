@@ -3,7 +3,6 @@ import { Pressable, StyleSheet, Switch, TouchableOpacity, View } from 'react-nat
 import CustomTheme from '../defaults/CustomTheme';
 
 import BaseText from '../defaults/BaseText'
-import WeekButtons from './WeekButtons';
 
 function Alarm(props) {
   const { title, hr, min, meridiem, isOn, activeDays } = props.alarmData
@@ -38,10 +37,6 @@ function Alarm(props) {
             thumbColor="white"
           />
         </View >
-
-        <WeekButtons
-          activeDays={activeDays}
-        />
       </Pressable>
     </View >
   )

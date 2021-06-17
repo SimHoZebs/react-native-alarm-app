@@ -17,7 +17,6 @@ function ButtonText(props) {
 
 const styles = StyleSheet.create({
 	buttonText: {
-		marginVertical: 15,
 		fontSize: 24,
 		color: "hsl(50,100%,71%)",
 	}

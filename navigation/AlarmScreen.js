@@ -7,7 +7,6 @@ import BaseView from '../defaults/BaseView'
 import BaseText from '../defaults/BaseText'
 
 //components
-import WeekButtons from '../components/WeekButtons'
 import ButtonText from '../components/ButtonText'
 import HeaderText from '../components/HeaderText'
 import { TextInput } from 'react-native-paper'
@@ -44,7 +43,7 @@ function AlarmScreen(props) {
 	}
 
 	return (
-		<BaseView>
+		<BaseView style={styles.root}>
 			<HeaderText style={styles.headerText}>This alarm rings in</HeaderText>
 			<HeaderText>Yes</HeaderText>
 
@@ -77,32 +76,32 @@ function AlarmScreen(props) {
 					theme={{ colors: { background: "hsl(0,0%,10%)" } }}
 					style={[styles.textInput]}
 				/>
+			</View>
 
-				<WeekButtons
-					activeDays={activeDays}
-				/>
+			<View style={styles.calendar}>
+				{/*calendar */}
+			</View>
 
-				<Pressable>
-					<ButtonText>Set specific dates</ButtonText>
+			<View style={styles.bottomButtonsWrapper}>
+				<Pressable style={styles.bottomButton}>
+					<ButtonText>Cancel</ButtonText>
 				</Pressable>
 
-				<View style={styles.bottomButtonsWrapper}>
-					<Pressable style={styles.bottomButton}>
-						<ButtonText>Cancel</ButtonText>
-					</Pressable>
-
-					<Pressable style={styles.bottomButton}>
-						<ButtonText>Save</ButtonText>
-					</Pressable>
-				</View>
+				<Pressable style={styles.bottomButton}>
+					<ButtonText>Save</ButtonText>
+				</Pressable>
 			</View>
 		</BaseView>
 	)
 }
 
 const styles = StyleSheet.create({
+	root: {
+		paddingHorizontal: 20
+	},
+
 	headerText: {
-		marginTop: 50
+		marginTop: 10
 	},
 
 	title: {
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
 	},
 
 	timeWrapper: {
-		marginVertical: 40,
+		marginVertical: 25,
 		flexDirection: "row",
 		justifyContent: "space-evenly",
 		height: 85,
@@ -119,10 +118,6 @@ const styles = StyleSheet.create({
 
 	time: {
 		fontSize: 64,
-	},
-
-	optionsWrapper: {
-		marginHorizontal: 20
 	},
 
 	alarmTitle: {
@@ -135,9 +130,15 @@ const styles = StyleSheet.create({
 		fontWeight: "400",
 	},
 
+	calendar: {
+		backgroundColor: "yellow",
+		height: 320
+	},
+
 	bottomButtonsWrapper: {
 		flexDirection: "row",
 		justifyContent: "space-between",
+		marginVertical: 30,
 	},
 
 	bottomButton: {
