@@ -10,6 +10,8 @@ import BaseText from '../defaults/BaseText'
 import ButtonText from '../components/ButtonText'
 import HeaderText from '../components/HeaderText'
 import { TextInput } from 'react-native-paper'
+import WeekButtons from '../components/WeekButtons'
+
 
 function AlarmScreen(props) {
 	const { alarmData, activeDays } = props.route.params
@@ -78,9 +80,9 @@ function AlarmScreen(props) {
 				/>
 			</View>
 
-			<View style={styles.calendar}>
-				{/*calendar */}
-			</View>
+			<WeekButtons
+				activeDays={alarmData.activeDays}
+			/>
 
 			<View style={styles.bottomButtonsWrapper}>
 				<Pressable style={styles.bottomButton}>
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
 	},
 
 	headerText: {
-		marginTop: 10
+		marginTop: 80
 	},
 
 	title: {
@@ -113,7 +115,6 @@ const styles = StyleSheet.create({
 		marginVertical: 25,
 		flexDirection: "row",
 		justifyContent: "space-evenly",
-		height: 85,
 	},
 
 	time: {
@@ -125,20 +126,17 @@ const styles = StyleSheet.create({
 	},
 
 	textInput: {
-		height: 44,
+		height: 37,
 		fontSize: 24,
 		fontWeight: "400",
 	},
 
-	calendar: {
-		backgroundColor: "yellow",
-		height: 320
-	},
 
 	bottomButtonsWrapper: {
 		flexDirection: "row",
 		justifyContent: "space-between",
-		marginVertical: 30,
+		marginTop: 20,
+		marginBottom: 30,
 	},
 
 	bottomButton: {

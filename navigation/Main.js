@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
+
+//expo APIs
+import * as Calendar from 'expo-calendar'
+import * as Notifications from 'expo-notifications'
 
 //defaults
 import BaseView from '../defaults/BaseView'
@@ -16,7 +20,18 @@ function Main(props) {
 
 	useEffect(() => {
 		setData(alarmData)
+		async () => {
+			const { status } = await Calendar.requestCalendarPermissionsAsync();
+			if (status === 'granted') {
+				const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+				console.log('Here are all your calendars:');
+				console.log({ calendars });
+			}
+		};
 	}, [])
+
+	useEffect(() => {
+	}, []);
 
 	return (
 		<BaseView>
@@ -36,13 +51,15 @@ function Main(props) {
 					/>
 				))}
 			</View>
+			<Button title="Cancel all notification" onPress={async () => await cancelAlarm()} />
+			<Button title="Create a test alarm" onPress={async () => await createAlarm()} />
 		</BaseView>
 	)
 }
 
 const styles = StyleSheet.create({
 	header: {
-		marginTop: 100,
+		marginTop: 80,
 	},
 
 	headerRemainingTime: {
@@ -50,5 +67,32 @@ const styles = StyleSheet.create({
 		fontSize: 34
 	}
 });
+
+async function getDefaultCalendarSource() {
+	const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+	const defaultCalendars = calendars.filter(each => each.source.name === 'Default');
+	return defaultCalendars[0].source;
+}
+
+async function createAlarm() {
+	const createdAlarm = await Notifications.scheduleNotificationAsync({
+		content: {
+			title: "test alarm notification",
+			sound: "testAlarmSound.wav",
+			body: 'Here is the notification body',
+			data: {
+				data: 'goes here'
+			},
+			categoryIdentifier: "alarm"
+		},
+		trigger: {
+			seconds: 1,
+		},
+	});
+}
+
+async function cancelAlarm() {
+	await Notifications.cancelAllScheduledNotificationsAsync()
+}
 
 export default Main
